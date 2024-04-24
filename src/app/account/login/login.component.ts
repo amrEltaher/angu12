@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { AccountService } from '../account.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     RouterModule,
     ReactiveFormsModule,
-    CommonModule,
-    HttpClientModule
+    CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
