@@ -1,19 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { share } from 'rxjs';
 import { SharedModule } from '../../shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     SharedModule,
-    RouterModule,
-    CommonModule,
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
@@ -28,7 +22,9 @@ export class RegisterComponent implements OnInit{
 
   constructor(private accountservice:AccountService,
                private formBuilder:FormBuilder
-              ) { }
+              ) { 
+                console.log("hello");
+              }
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],

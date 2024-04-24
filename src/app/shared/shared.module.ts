@@ -14,12 +14,12 @@ import { RegisterComponent } from '../account/register/register.component';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RegisterComponent
   ],
   exports:[
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ]
 })
 export class SharedModule { }

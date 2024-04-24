@@ -9,11 +9,11 @@ import { RegisterComponent } from './account/register/register.component';
 export const routes: Routes = [
   {
     path: '',component: HomeComponent},
-    {path: 'account/login', component: LoginComponent},
-    {path: 'account/register', component: RegisterComponent},
+    // {path: 'account/login', component: LoginComponent},
+    // {path: 'account/register', component: RegisterComponent},
 
-    //implement lazy loading 
-    // {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
+    // implement lazy loading 
+    {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
   {
     path: 'not-found',
     component: NotFoundComponent
