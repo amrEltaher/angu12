@@ -16,7 +16,6 @@ const routes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routes),
-    HttpClientModule
   ],
   exports:[
     RouterModule

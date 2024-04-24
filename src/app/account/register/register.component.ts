@@ -14,10 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     RouterModule,
     CommonModule,
-    HttpClientModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit{
   ngOnInit(): void {
