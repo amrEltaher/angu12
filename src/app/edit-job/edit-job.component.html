@@ -1,0 +1,30 @@
+<!-- Edit Job Modal -->
+<div class="modal fade" id="editDeptModal" tabindex="-1" role="dialog" aria-labelledby="editDeptModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editDeptModalLabel">Edit Job</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Job form fields -->
+        <form [formGroup]="jobForm" (ngSubmit)="saveChanges()">
+          <div class="form-group">
+            <label for="deptName">Job Name</label>
+            <input formControlName="name" type="text" class="form-control" id="deptName" placeholder="Job Name" required>
+          </div>
+          <div class="form-group">
+            <label for="deptLocation">Job Location</label>
+            <input formControlName="location" type="text" class="form-control" id="deptLocation" placeholder="Job Location" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

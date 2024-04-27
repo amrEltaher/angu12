@@ -1,12 +1,12 @@
 export interface AddressBook {
   id: number,
   name: string,
-  jobTittle: string,
-  department: string,
+  jobId: string,
+  deptId: string,
   phoneNumber: string,
   birthDate: Date,
   address: string,
   email: string,
-  photo: string,
+  Photo: string,
   age: number
 }

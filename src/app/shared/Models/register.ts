@@ -1,8 +1,13 @@
-export interface register {
-    name:string;
-    department:string;
-    email:string;
-    phone:string;
-    password:string;
-    confirmPassword:string;   
+export interface addreebook {
+    UserName: string;
+    FullName: string;
+    Email: string;
+    PhoneNumber: string;
+    Password: string;
+    confirmPassword: string;
+    Address: string;
+    deptId: number;
+    jobId: number;
+    birthDate?: Date;
+    Age: number;
 }

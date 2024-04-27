@@ -8,12 +8,12 @@
             <div class="col-12">
               <div class="text-center mb-5">
                 <a href="#!">
-                  <img src="..\../assets/Tamweely-logo.jpg" alt="Logo" width="210" height="100" routerLink="Home">
+                  <img src="..\../assets/images/Tamweely-logo.jpg" alt="Logo" width="275" height="150" routerLink="Home">
                 </a>
               </div>
             </div>
           </div>
-          <form [formGroup]="loginForm" (ngsubmit)="login()" autocomplete="off">
+          <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
             <div class="row gy-3 gy-md-4 overflow-hidden">
               <div class="col-12">
                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
@@ -23,10 +23,10 @@
                       <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                     </svg>
                   </span>
-                  <input formControlName="email" type="email" class="form-control" name="email" id="email" required
-                  [class.is-invalid]="submitted&&loginForm.get('email')?.errors">
-                  <span  class="text-danger" *ngIf="submitted&&loginForm.get('email')?.hasError('required')">Email is required</span
-                  >
+                  <input formControlName="UserName" type="email" class="form-control" name="email" id="email" required
+                  [class.is-invalid]="submitted&&loginForm.get('UserName')?.errors">
+                  <span  class="text-danger" *ngIf="submitted&&loginForm.get('UserName')?.hasError('required')">Email is required</span>
+                  
                 </div>
               </div>
               <div class="col-12">
@@ -38,9 +38,9 @@
                       <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                     </svg>
                   </span>
-                  <input formControlName="password"  type="password" class="form-control" name="password" id="password" value="" required
-                  [class.is-invalid]="submitted&&loginForm.get('password')?.errors">
-                  <span class="text-danger" *ngIf="submitted&&loginForm.get('password')?.hasError('required')">Password is required</span
+                  <input formControlName="Password"  type="password" class="form-control" name="password" id="password" value="" required
+                  [class.is-invalid]="submitted&&loginForm.get('Password')?.errors">
+                  <span class="text-danger" *ngIf="submitted&&loginForm.get('Password')?.hasError('required')">Password is required</span
                     >
                 </div>
               </div>

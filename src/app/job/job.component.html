@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Job ID</th>
+      <th>Job Title</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let job of jobs">
+      <td>{{ job.id }}</td>
+      <td>{{ job.name }}</td>
+      <td>
+        <button class="btn btn-primary me-2" (click)="openEditModal(job)">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="btn btn-danger" (click)="deleteJob(job.id)">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

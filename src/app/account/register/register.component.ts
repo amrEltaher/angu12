@@ -2,38 +2,62 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-
+import { DeptService } from '../../dept/dept.service';
+import { JobService } from '../../job/job.service';
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     SharedModule,
-  ],
-  templateUrl: './register.component.html',
+      ],
+  templateUrl:'./register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit{
-  ngOnInit(): void {
-    this.initializeForm();
-  }
   registerForm:FormGroup = new FormGroup({});
   submitted = false;
   errorMassages : string[] = [];
+  departments: any[] = [];
+  jobsarray: any[] = [];
+   photo = new FormData();
+
+
+  ngOnInit(): void {
+    this.initializeForm();
+    this.depts.getAllDept().subscribe((result: any[]) => {
+      console.log(result);
+      this.departments = result;
+    });
+      this.jobs.getAllJob().subscribe((result: any[]) => {
+      console.log(result);
+      this.jobsarray = result;
+    });
+   
+  }
 
   constructor(private accountservice:AccountService,
-               private formBuilder:FormBuilder
+               private formBuilder:FormBuilder,
+               private depts:DeptService,
+                private jobs:JobService
               ) { 
                 console.log("hello");
               }
-  initializeForm() {
+  async initializeForm() {
     this.registerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
-      department: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
-      email: ['', [Validators.required, Validators.pattern('^[^\s@]+@[^\s@]+\.[^\s@]+$')]],
-      phone: ['', [Validators.required,Validators.pattern('^01[01245][0-9]{8}$')]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      confirmPassword: ['', Validators.required, this.confirmPasswordValidator.bind(this)]
+      UserName: [''],
+      FullName: [''],
+      Email: ['', [Validators.required, Validators.pattern("^[^\s@]+@[^\s@]+\.[^\s@]+$")]], 
+      PhoneNumber: ['', [Validators.required, Validators.pattern("^01[01245][0-9]{8}$")]], 
+      Password: [''],
+      confirmPassword: ['', this.confirmPasswordValidator],
+      Address: [''],
+      deptId: [''],
+      jobId: [''],
+      birthDate: [''],
+      Age: [''],
+      photo: ['']
     });
+    
   }
   
   confirmPasswordValidator(control: AbstractControl): ValidationErrors | null {
@@ -49,13 +73,47 @@ export class RegisterComponent implements OnInit{
   register() {
     this.submitted = true;
     this.errorMassages = [];
-    this.accountservice.register(this.registerForm.value).subscribe({
-      next: response => {
-        console.log(response);
+    console.log(this.photo);
+    // if (this.registerForm.valid) {
+      //console.log(this.registerForm.value);
+      const formData = new FormData();
+      formData.append('photo', this.registerForm.value.photo);
+      const data = {
+  "userName": this.registerForm.value.UserName,
+  "fullName": this.registerForm.value.FullName,
+  "email": this.registerForm.value.Email,
+  "phoneNumber": this.registerForm.value.PhoneNumber,
+  "password": this.registerForm.value.Password,
+  "confirmPassword": this.registerForm.value.confirmPassword,
+  "address": this.registerForm.value.Address,
+  "deptId": this.registerForm.value.deptId,
+  "jobId": this.registerForm.value.jobId,
+  "birthDate": this.registerForm.value.birthDate,
+      };
+      console.log(data);
+      // Object.keys(this.registerForm.value).forEach(key => {
+      //   formData.append(key, this.registerForm.value[key]);
+      // });
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key as keyof typeof data]);
+      });
+      
+      this.accountservice.register(formData).subscribe({
+        next: (response: any) => {
+          console.log(response);
         },
-        error:error=> {
-        console.log(error);
+        error: (error: any) => {
+          console.log(error);
         }
-    })
-  } 
+      });
+    
+  }
+  
+  
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.registerForm.patchValue({ photo: file });
+  }
+  
+  
 }

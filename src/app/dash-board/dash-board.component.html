@@ -1,1 +1,40 @@
-<p>dash-board works!</p>
+<input type="text" [(ngModel)]="searchQuery" (input)="filterEmployees()" placeholder="Search...">
+
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Job Title</th>
+      <th>Department</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Birth Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees">
+      <td>
+        <img [src]="employee.Photo"
+         alt="photo" width="50" height="50" class="rounded-circle">
+      </td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.age }}</td>
+      <td>{{ employee.jobId }}</td>
+      <td>{{ employee.deptId }}</td>
+      <td>{{ employee.phoneNumber }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.address }}</td>
+      <td>{{ employee.birthDate}}</td>
+      <td>
+        <button class="btn btn-primary me-2" (click)="openEditModal(employee)"> <i class="fas fa-edit"></i> Edit</button>|
+        <button class="btn btn-danger" (click)="deleteAddressBook(employee.id)"> <i class="fas fa-trash"></i>Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<button class="btn btn-primary" (click)="ExportToExcel()">Export to Excel</button>

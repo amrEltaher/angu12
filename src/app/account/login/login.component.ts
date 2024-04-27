@@ -27,28 +27,27 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('hello');
     this.initializeForm();
-    console.log('helllllllllllllo');
   }
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      UserName: ['', Validators.required],
+      Password: ['', Validators.required]
     });
   }
 
   login() {
     this.submitted = true;
     this.errorMessages = [];
+    console.log('Login successful');
 
     if (this.loginForm.valid) {
       this.accountservice.login(this.loginForm.value).subscribe({
         next: (response: any) => {
           console.log(response);
           // Navigate to a different route after successful login
-          this.router.navigate(['/desired-route']);
+          this.router.navigate(['/dashboard']);
         },
         error: (error: any) => {
           console.log(error);

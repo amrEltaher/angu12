@@ -1,0 +1,45 @@
+<form [formGroup]="employeeForm" (ngSubmit)="saveChanges()">
+  <div class="row gy-3 gy-md-4 overflow-hidden">
+    <div class="col-12">
+      <label  for="Name" class="form-label"> Name <span class="text-danger">*</span></label>
+      <input formControlName="name" type="text" class="form-control" name="Name" id="Name" placeholder="Name" required>
+      <span *ngIf="submitted&&registerForm.get('name')?.hasError('required')" class="text-danger">Name is required</span>
+      <span *ngIf="submitted&&registerForm.get('name')?.hasError('minlength')||submitted&&registerForm.get('name')?.hasError('maxlrngth')" class="text-danger">Name must be at least 3 characters,and max 40</span>
+    </div>
+    <div class="col-12">
+      <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+      <input formControlName="email" type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required
+      >
+      <span *ngIf="submitted&&registerForm.get('email')?.hasError('required')" class="text-danger">Email is required</span>
+      <span *ngIf="submitted&&registerForm.get('email')?.hasError('pattern')" class="text-danger">Invalid email address</span>
+    </div>
+    <div class="col-12">
+      <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+      <input formControlName="phone" type="tel" class="form-control" name="phone" id="phone" placeholder="Phone" required
+      >
+      <span *ngIf="submitted&&registerForm.get('phone')?.hasError('required')" class="text-danger">Phone is required</span>
+      <span *ngIf="submitted&&registerForm.get('phone')?.hasError('pattern')" class="text-danger">Invalid phone number</span>
+    </div>
+    <div class="col-12">
+      <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+      <input formControlName="password" type="password" class="form-control" name="password" id="password" value="" required
+      >
+      <span *ngIf="submitted&&registerForm.get('password')?.hasError('required')" class="text-danger">Password is required</span>
+      <span *ngIf="submitted&&registerForm.get('password')?.hasError('minlength')||submitted&&registerForm.get('password')?.hasError('maxlrngth')" class="text-danger">Password must be at least 6 characters,and max 20</span>
+    </div>
+    <div class="col-12">
+      <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+      <input formControlName="confirmPassword" type="password" class="form-control" name="confirmPassword" id="confirmPassword" value="" required
+      >
+      <span *ngIf="submitted&&registerForm.get('confirmPassword')?.hasError('required')" class="text-danger">Confirm Password is required</span>
+      <span *ngIf="submitted&&registerForm.get('confirmPassword')?.hasError('mustMatch')" class="text-danger">Passwords must match</span>
+    </div>
+    
+    
+    </div>
+    <div class="col-12">
+      <div class="d-grid">
+        <button class="btn bsb-btn-xl btn-primary" type="submit">save</button>
+      </div>
+    </div>
+</form>

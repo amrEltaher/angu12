@@ -1,35 +1,19 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './shared/components/errors/not-found/not-found.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
-import { LoginComponent } from './account/login/login.component';
-import { RegisterComponent } from './account/register/register.component';
-// import { AccountModule } from './account/account.module';
+import { DeptComponent } from './dept/dept.component';
+import { JobComponent } from './job/job.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: '',component: HomeComponent},
-    // {path: 'account/login', component: LoginComponent},
-    // {path: 'account/register', component: RegisterComponent},
-
-    // implement lazy loading 
-    {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
-  {
-    path: 'not-found',
-    component: NotFoundComponent
+    path: '', redirectTo: '/login', pathMatch: 'full'
   },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,pathMatch: 'full' 
-  },
-  {
-    path:'dashboard',
-    component: DashBoardComponent
-  }
- 
+  // Lazy loading for account module
+  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  { path: 'home', component: HomeComponent },
+  { path: 'dashboard', component: DashBoardComponent },
+  { path: 'department', component: DeptComponent },
+  { path: 'jobs', component: JobComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' }
 ];
-

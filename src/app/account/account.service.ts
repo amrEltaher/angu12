@@ -3,7 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment.development';
 import { AddressBook } from '../shared/Models/addressBook';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'any'
@@ -13,7 +13,7 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(loginData: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/api/Account/Login`, loginData).pipe(
+    return this.http.post(`${environment.apiUrl}/api/Account/login`, loginData).pipe(
       catchError((error: any) => {
         // Handle errors here
         return throwError(error);
@@ -22,7 +22,9 @@ export class AccountService {
   }
 
   register(registerData: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/api/Account/Register`, registerData).pipe(
+    //const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+    console.log(registerData);
+    return this.http.post(`${environment.apiUrl}/api/Account/register`, registerData).pipe(
       catchError((error: any) => {
         // Handle errors here
         return throwError(error);
@@ -47,4 +49,5 @@ export class AccountService {
       })
     );
   }
+
 }
